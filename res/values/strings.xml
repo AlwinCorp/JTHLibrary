@@ -33,6 +33,7 @@
     <string name="dialog_progress_load_loans">Loading loans&#8230;</string>
     <string name="dialog_progress_load_reservations">Loading reservations&#8230;</string>
     <string name="dialog_progress_add_loanable">Adding loanable...</string>
+    <string name="dialog_progress_load_reservations_and_data">Loading loans and reservations&#8230;</string>
 
     <!--textviews-->
     <string name="tv_titledetails_loanables">Loanables</string>

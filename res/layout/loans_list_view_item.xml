@@ -67,7 +67,8 @@
             android:layout_height="wrap_content"
             style="@style/ButtonStyle"
             android:text="@string/btn_check_in"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             />
-
 
 </LinearLayout>

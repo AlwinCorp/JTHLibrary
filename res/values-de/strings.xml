@@ -33,6 +33,7 @@
     <string name="dialog_progress_load_loans">Lade Leihen für dieses Buch&#8230;</string>
     <string name="dialog_progress_load_reservations">Lade Reserierungen für dieses Buch&#8230;</string>
     <string name="dialog_progress_add_loanable">Füge Exemplar hinzu&#8230;</string>
+    <string name="dialog_progress_load_reservations_and_data">Lade Leihen und Reservierungen&#8230;</string>
 
     <!--textviews-->
     <string name="tv_titledetails_loanables">Exemplare</string>
