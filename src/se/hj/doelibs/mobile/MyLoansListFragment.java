@@ -52,7 +52,7 @@ public class MyLoansListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_my_loans, container, false);
 
-		this.novaLight = Typeface.createFromAsset(view.getResources().getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
+		this.novaLight = Typeface.createFromAsset(view.getResources().getAssets(), "fonts/Proxima Nova Thin.otf");
 		TextView myLoansHeader = (TextView) view.findViewById(R.id.myLoanText);
 		myLoansHeader.setTypeface(novaLight);
 		TextView myReservationsHeader = (TextView) view.findViewById(R.id.myReservationsText);

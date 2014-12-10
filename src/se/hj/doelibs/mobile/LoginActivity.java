@@ -43,13 +43,14 @@ public class LoginActivity extends BaseActivity {
         TextView loginUsr = (TextView)findViewById(R.id.login_username_header);
         TextView loginPsw = (TextView)findViewById(R.id.login_password_header);
 
+        Typeface novaThin = Typeface.createFromAsset(contentView.getResources().getAssets(), "fonts/Proxima Nova Thin.otf");
         Typeface novaLight = Typeface.createFromAsset(contentView.getResources().getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
 
         usernameField.setTypeface(novaLight);
         passwordField.setTypeface(novaLight);
         btnLogin.setTypeface(novaLight);
-        loginPsw.setTypeface(novaLight);
-        loginUsr.setTypeface(novaLight);
+        loginPsw.setTypeface(novaThin);
+        loginUsr.setTypeface(novaThin);
 
         if(!ConnectionUtils.isConnected(this)) {
             btnLogin.setActivated(false);
