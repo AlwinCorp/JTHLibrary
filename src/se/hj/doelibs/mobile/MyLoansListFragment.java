@@ -20,11 +20,12 @@ import se.hj.doelibs.mobile.asynctask.TaskCallback;
 import se.hj.doelibs.mobile.listadapter.LoanListAdapter;
 import se.hj.doelibs.mobile.listadapter.ReservationListAdapter;
 import se.hj.doelibs.mobile.listener.OnTitleItemSelectedListener;
+import se.hj.doelibs.mobile.utils.ConnectionUtils;
 import se.hj.doelibs.mobile.utils.CurrentUserUtils;
 import se.hj.doelibs.mobile.utils.ProgressDialogUtils;
 import se.hj.doelibs.model.Loan;
 import se.hj.doelibs.model.Reservation;
-
+import se.hj.doelibs.mobile.utils.fileUtils;
 import java.util.List;
 
 /**
@@ -41,6 +42,8 @@ public class MyLoansListFragment extends Fragment {
 	private ProgressDialog loadLoansDialog;
 	private ProgressDialog loadReservationsDialog;
 	private Typeface novaLight;
+	private String loansFile = "loans";
+	private String reservationFile = "reservations";
 
 	/**
 	 * says if a title was already selected and loaded in the title details fragment
@@ -62,20 +65,34 @@ public class MyLoansListFragment extends Fragment {
 		lv_myReservations = (ListView) view.findViewById(R.id.reservations_list);
 
 		//add on click listener
-		lv_myLoans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Loan clicked = (Loan) lv_myLoans.getItemAtPosition(position);
-				listener.onTitleItemSelected(clicked.getLoanable().getTitle().getTitleId());
-			}
-		});
-		lv_myReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Reservation clicked = (Reservation) lv_myReservations.getItemAtPosition(position);
-				listener.onTitleItemSelected(clicked.getTitle().getTitleId());
-			}
-		});
+			lv_myLoans.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					if (ConnectionUtils.isConnected(getActivity()))
+					{
+						Loan clicked = (Loan) lv_myLoans.getItemAtPosition(position);
+						listener.onTitleItemSelected(clicked.getLoanable().getTitle().getTitleId());
+					}
+					else
+					{
+
+						Toast.makeText(activity, getText(R.string.generic_not_connected_error), Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+			lv_myReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					if (ConnectionUtils.isConnected(getActivity())) {
+						Reservation clicked = (Reservation) lv_myReservations.getItemAtPosition(position);
+						listener.onTitleItemSelected(clicked.getTitle().getTitleId());
+					}
+					else
+					{
+						Toast.makeText(activity, getText(R.string.generic_not_connected_error), Toast.LENGTH_LONG).show();
+					}
+				}
+			});
 
 		lv_myLoans.setOnTouchListener(new View.OnTouchListener() {
 			// Setting on Touch Listener for handling the touch inside ScrollView
@@ -111,7 +128,6 @@ public class MyLoansListFragment extends Fragment {
 				@Override
 				public void onTaskCompleted(List<Loan> loans) {
 					ProgressDialogUtils.dismissQuitely(loadLoansDialog);
-
 					lv_myLoans.setAdapter(new LoanListAdapter(activity, loans, new TaskCallback<Boolean>() {
 						private ProgressDialog dialog;
 
@@ -119,7 +135,7 @@ public class MyLoansListFragment extends Fragment {
 						public void onTaskCompleted(Boolean checkInSuccessfull) {
 							ProgressDialogUtils.dismissQuitely(dialog);
 
-							if(!checkInSuccessfull) {
+							if (!checkInSuccessfull) {
 								Toast.makeText(activity, getText(R.string.loanable_checkin_error), Toast.LENGTH_LONG).show();
 							} else {
 								activity.finish();
@@ -140,13 +156,14 @@ public class MyLoansListFragment extends Fragment {
 					//on tablets in landscape mode load first title in title details fragment:
 					if(getResources().getConfiguration().isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
 							&& getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-						if(loans != null && loans.size() > 0) {
+						if(loans != null && loans.size() > 0 ) {
 							listener.onTitleItemSelected(((Loan)lv_myLoans.getItemAtPosition(0)).getLoanable().getTitle().getTitleId());
 
 							//set title selected
 							titleSelected = true;
 						}
 					}
+
 				}
 
 				@Override
@@ -218,9 +235,16 @@ public class MyLoansListFragment extends Fragment {
 
 		@Override
 		protected List<Reservation> doInBackground(Void... params) {
-			ReservationDao reservationDao = new ReservationDao(CurrentUserUtils.getCredentials(activity));
 
-			return  reservationDao.getCurrentUsersReservations();
+			if(ConnectionUtils.isConnected(getActivity().getBaseContext())) {
+				ReservationDao reservationDao = new ReservationDao(CurrentUserUtils.getCredentials(activity));
+				fileUtils.writeReservationToFile(reservationFile, getActivity().getBaseContext(), reservationDao.getCurrentUsersReservations());
+				return reservationDao.getCurrentUsersReservations();
+			}
+			else {
+				return fileUtils.readReservationFromFile(reservationFile,getActivity().getBaseContext());
+			}
+
 		}
 
 		@Override
@@ -248,9 +272,17 @@ public class MyLoansListFragment extends Fragment {
 
 		@Override
 		protected List<Loan> doInBackground(Void... params) {
-			LoanDao loanDao = new LoanDao(CurrentUserUtils.getCredentials(activity));
 
-			return  loanDao.getCurrentUsersLoans();
+			if(ConnectionUtils.isConnected(getActivity().getBaseContext()) == true) {
+				LoanDao loanDao = new LoanDao(CurrentUserUtils.getCredentials(activity));
+				//Saves to file
+				fileUtils.writeLoansToFile(loansFile,getActivity().getBaseContext(),loanDao.getCurrentUsersLoans());
+				return loanDao.getCurrentUsersLoans();
+			}
+			else
+			{
+				return fileUtils.readLoansFromFile(loansFile, getActivity().getBaseContext());
+			}
 		}
 
 		@Override
@@ -263,7 +295,6 @@ public class MyLoansListFragment extends Fragment {
 			callback.onTaskCompleted(loans);
 		}
 	}
-
 
 	public static void setListViewHeightBasedOnChildren(ListView listView) {
 		ListAdapter listAdapter = listView.getAdapter();

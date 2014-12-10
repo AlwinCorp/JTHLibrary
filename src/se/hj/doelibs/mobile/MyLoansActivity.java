@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import se.hj.doelibs.mobile.codes.ExtraKeys;
 import se.hj.doelibs.mobile.listener.OnTitleItemSelectedListener;
+import se.hj.doelibs.mobile.utils.ConnectionUtils;
 
 /**
  * @author Alexander
@@ -28,8 +30,14 @@ public class MyLoansActivity extends BaseActivity implements OnTitleItemSelected
 		TitleDetailsFragment fragment = (TitleDetailsFragment) getFragmentManager().findFragmentById(R.id.detailFragment);
 
 		if (fragment != null && fragment.isInLayout()) {
-			fragment.setTitleId(titleId);
-			fragment.setupView();
+			if(ConnectionUtils.isConnected(getBaseContext())) {
+				fragment.setTitleId(titleId);
+				fragment.setupView();
+			}
+			else {
+				TextView BSMOBILE = (TextView) findViewById(R.id.textView);
+				BSMOBILE.setText(getText(R.string.generic_not_connected_error));
+			}
 		} else {
 			//fragment was not found in current layout --> it is not on a large device --> start activity with title details
 			Intent titleDetailsActivity = new Intent(this, TitleDetailsActivity.class);
