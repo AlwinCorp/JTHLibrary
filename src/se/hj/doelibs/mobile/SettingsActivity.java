@@ -70,17 +70,18 @@ public class SettingsActivity extends BaseActivity {
 		Switch notificationSwitch = (Switch)findViewById(R.id.notificationSwitch);
 
 
+		Typeface novaThin = Typeface.createFromAsset(getAssets(), "fonts/Proxima Nova Thin.otf");
 		Typeface novaLight = Typeface.createFromAsset(getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
 		btnLogin.setTypeface(novaLight);
 		btnLogout.setTypeface(novaLight);
 		txtPassword.setTypeface(novaLight);
 		txtUsername.setTypeface(novaLight);
 		tvLoggedInAs.setTypeface(novaLight);
-		tv_select_lang.setTypeface(novaLight);
-		tv_my_account.setTypeface(novaLight);
+		tv_select_lang.setTypeface(novaThin);
+		tv_my_account.setTypeface(novaThin);
 		tv_login_passw.setTypeface(novaLight);
 		tv_login_usr.setTypeface(novaLight);
-		tv_notifications.setTypeface(novaLight);
+		tv_notifications.setTypeface(novaThin);
 		notificationSwitch.setTypeface(novaLight);
 		//tv_my_account_current.setTypeface(novaLight);
 

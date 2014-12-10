@@ -59,14 +59,14 @@ public class AddLoanableActivity extends BaseActivity {
 		TextView tv_doeCat = (TextView)findViewById(R.id.add_loanable_category);
 		TextView tv_doeRoom = (TextView)findViewById(R.id.add_loanable_room);
 
-
+		Typeface novaThin = Typeface.createFromAsset(getAssets(), "fonts/Proxima Nova Thin.otf");
 		Typeface novaLight = Typeface.createFromAsset(getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
 		txtDelibsId.setTypeface(novaLight);
 		txtLocationCategory.setTypeface(novaLight);
 		txtRoom.setTypeface(novaLight);
-		tv_doeCat.setTypeface(novaLight);
-		tv_doeid.setTypeface(novaLight);
-		tv_doeRoom.setTypeface(novaLight);
+		tv_doeCat.setTypeface(novaThin);
+		tv_doeid.setTypeface(novaThin);
+		tv_doeRoom.setTypeface(novaThin);
 		btnSave.setTypeface(novaLight);
 
 	}

@@ -55,7 +55,8 @@ public class MyLoansListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.fragment_my_loans, container, false);
 
-		this.novaLight = Typeface.createFromAsset(view.getResources().getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
+
+		this.novaLight = Typeface.createFromAsset(view.getResources().getAssets(), "fonts/Proxima Nova Thin.otf");
 
 		list_myLoansAndReservations = (ListView)view.findViewById(R.id.list_my_loans_and_reservations);
 		list_myLoansAndReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,6 +78,8 @@ public class MyLoansListFragment extends Fragment {
 				}
 			}
 		});
+
+
 
 		//check if user is logged in
 		if(CurrentUserUtils.getCredentials(view.getContext()) == null) {
@@ -220,4 +223,5 @@ public class MyLoansListFragment extends Fragment {
 			duringRunCallback.onTaskCompleted(result);
 		}
 	}
+
 }

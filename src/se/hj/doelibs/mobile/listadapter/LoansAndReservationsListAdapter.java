@@ -31,6 +31,7 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 	private TaskCallback<Boolean> checkInCallback;
 	private Typeface novaLight;
 	private Typeface novaRegItalic;
+	private Typeface novaThin;
 
 	public LoansAndReservationsListAdapter(Activity activity, List<Loan> loans, List<Reservation> reservations, TaskCallback<Boolean> checkInCallback) {
 		this.activity = activity;
@@ -39,6 +40,7 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 		this.checkInCallback = checkInCallback;
 		this.novaLight = Typeface.createFromAsset(activity.getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
 		this.novaRegItalic = Typeface.createFromAsset(activity.getAssets(), "fonts/Proxima Nova Alt Condensed Regular Italic.otf");
+		this.novaThin = Typeface.createFromAsset(activity.getAssets(), "fonts/Proxima Nova Thin.otf");
 	}
 
 	@Override
@@ -161,6 +163,8 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 		subcontent2.setTypeface(novaRegItalic);
 		subcontent1Header.setTypeface(novaRegItalic);
 		subcontent2Header.setTypeface(novaRegItalic);
+		if(button != null)
+			button.setTypeface(novaLight);
 
 		String timeGMT = loan.getToBeReturnedDate().toGMTString();
 
@@ -184,7 +188,7 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 	private TextView getHeader(CharSequence text) {
 		LayoutInflater inflater = activity.getLayoutInflater();
 		TextView tv = (TextView)inflater.inflate(R.layout.my_loans_list_item_header, null,true);
-		tv.setTypeface(novaLight);
+		tv.setTypeface(novaThin);
 
 		tv.setText(text);
 

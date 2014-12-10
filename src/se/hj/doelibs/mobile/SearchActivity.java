@@ -30,6 +30,7 @@ public class SearchActivity extends BaseActivity {
 	private MultiAutoCompleteTextView mactv;
 	private ProgressDialog searchDialog;
 	private Typeface novaLight;
+	private Typeface novaThin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +46,14 @@ public class SearchActivity extends BaseActivity {
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line);
 		et = (EditText)findViewById(R.id.searchEditText);
 
+		this.novaThin = Typeface.createFromAsset(contentView.getResources().getAssets(), "fonts/Proxima Nova Thin.otf");
 		this.novaLight = Typeface.createFromAsset(contentView.getResources().getAssets(), "fonts/Proxima Nova Alt Condensed Light.otf");
 		TextView tv_search_title = (TextView) contentView.findViewById(R.id.tv_search_title);
 		TextView tv_search_topic = (TextView) contentView.findViewById(R.id.tv_search_topic);
 		Button btn_search = (Button) contentView.findViewById(R.id.btn_search);
 
-		tv_search_title.setTypeface(novaLight);
-		tv_search_topic.setTypeface(novaLight);
+		tv_search_title.setTypeface(novaThin);
+		tv_search_topic.setTypeface(novaThin);
 		et.setTypeface(novaLight);
 		mactv.setTypeface(novaLight);
 		btn_search.setTypeface(novaLight);

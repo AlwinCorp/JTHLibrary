@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              style="@style/ListViewItemStyle"
+              android:layout_weight="1"
+              android:orientation="vertical"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
         >
 
     <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  style="@style/ListViewItemStyle"
             >
 
-
-            <TextView
-                    android:id="@+id/tv_loans_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="titlePlaceholder"
-                    style="@style/TextSmall"
-                    />
-
-        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loans_room"
-                    android:id="@+id/tv_loans_subcontent1_header"
-                    style="@style/TextSmaller"
-                    />
-
-            <TextView
-                android:id="@+id/tv_loans_subcontent1"
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text=":Room(Catalog)"
-                style="@style/TextSmaller"
-                />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
 
 
-        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-            <TextView
+                <TextView
+                        android:id="@+id/tv_loans_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="titlePlaceholder"
+                        style="@style/TextSmall"
+                        />
+
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loans_room"
+                        android:id="@+id/tv_loans_subcontent1_header"
+                        style="@style/TextSmaller"
+                        />
+
+                <TextView
+                    android:id="@+id/tv_loans_subcontent1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_loans_subcontent2_header"
-                    android:text="@string/loans_to_be_returned"
-                    style="@style/TextSmaller"
-
-                    />
-
-            <TextView
-                    android:id="@+id/tv_loans_subcontent2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:text=":Room(Catalog)"
                     style="@style/TextSmaller"
                     />
             </LinearLayout>
+
+
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_loans_subcontent2_header"
+                        android:text="@string/loans_to_be_returned"
+                        style="@style/TextSmaller"
+
+                        />
+
+                <TextView
+                        android:id="@+id/tv_loans_subcontent2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/TextSmaller"
+                        />
+                </LinearLayout>
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/btn_loans_checkIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ButtonStyle.Dark"
+                android:text="@string/btn_check_in"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                />
+
     </LinearLayout>
-
-    <Button
-            android:id="@+id/btn_loans_checkIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/ButtonStyle"
-            android:text="@string/btn_check_in"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            />
-
 </LinearLayout>
