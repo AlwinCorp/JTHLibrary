@@ -38,6 +38,12 @@
     <style name="ButtonStyle">
         <item name="android:padding">15dp</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/lightbutton</item>
+    </style>
+    <style name="ButtonStyle.Dark">
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/darkbutton</item>
     </style>
 
     <style name="ListViewStyle">

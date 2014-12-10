@@ -41,7 +41,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyle.Dark"
             android:text="checkInOrOut"
             android:id="@+id/btn_titledetails_loanable_checkInOrOut"/>
 </LinearLayout>

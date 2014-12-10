@@ -71,6 +71,8 @@ public class LoanListAdapter extends BaseAdapter{
         subcontent2.setTypeface(novaRegItalic);
         subcontent1Header.setTypeface(novaRegItalic);
         subcontent2Header.setTypeface(novaRegItalic);
+        if(button != null)
+            button.setTypeface(novaLight);
 
         Loan loan = loans.get(position);
 
