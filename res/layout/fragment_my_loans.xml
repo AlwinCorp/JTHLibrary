@@ -24,7 +24,8 @@
     <ListView
             android:id="@+id/loans_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             style="@style/ListViewStyle"
             />
 
@@ -42,7 +43,9 @@
     <ListView
             android:id="@+id/reservations_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             style="@style/ListViewStyle"
             />
+
 </LinearLayout>
