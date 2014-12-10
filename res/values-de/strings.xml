@@ -118,6 +118,7 @@
     <string name="all_fields_required">Alle Felder sind erforderlich</string>
     <string name="add_loanable_successfull">Exemplar erfolgreich hinzugefügt</string>
     <string name="add_loanable_no_title">Kein Buch ausgewählt - Sie können Exemplare nur zu einem existierenden Buch hinzufügen</string>
+    <string name="generic_not_connected_error">Sie müssen mit dem Internet verbunden sein um diese Funktionalität zu nutzen</string>
     <string name="isbn_scanner_no_scan_data_received">Keine Daten durch Scan erhalten</string>
     <string name="isbn_scanner_only_isbn10_and_isbn13_supported">nur ISBN10 und ISBN13 werden als Barcodeformate unterstützt</string>
     <string name="dialog_progress_check_if_isbn_exists">prüfe ob ein Buch mit dieser ISBN Nummer im DoeLib-System existiert</string>
