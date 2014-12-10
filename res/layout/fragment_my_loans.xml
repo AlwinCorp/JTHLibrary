@@ -8,43 +8,10 @@
     android:background="#e5e5e5"
     tools:context="se.hj.doelibs.mobile.MyLoansListFragment" >
 
-
-    <TextView
-            android:id="@+id/myLoanText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/my_loans_MyLoans"
-        style="@style/TextMedium"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:background="#22b573"
-        android:padding="10dp"
-            />
-
     <ListView
-            android:id="@+id/loans_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            style="@style/ListViewStyle"
-            />
-
-    <TextView
-            android:id="@+id/myReservationsText"
+            android:id="@+id/list_my_loans_and_reservations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/my_loans_MyReservations"
-            style="@style/TextMedium"
-            android:gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            android:background="#22b573"
-            android:padding="10dp"
-            />
-    <ListView
-            android:id="@+id/reservations_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
             style="@style/ListViewStyle"
             />
 
