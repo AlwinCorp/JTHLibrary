@@ -20,10 +20,14 @@ import se.hj.doelibs.api.ReservationDao;
 import se.hj.doelibs.mobile.asynctask.TaskCallback;
 import se.hj.doelibs.mobile.listadapter.LoansAndReservationsListAdapter;
 import se.hj.doelibs.mobile.listener.OnTitleItemSelectedListener;
+import se.hj.doelibs.mobile.utils.ConnectionUtils;
 import se.hj.doelibs.mobile.utils.CurrentUserUtils;
 import se.hj.doelibs.mobile.utils.ProgressDialogUtils;
 import se.hj.doelibs.model.Loan;
 import se.hj.doelibs.model.Reservation;
+import se.hj.doelibs.mobile.utils.fileUtils;
+import java.util.List;
+
 
 /**
  * Fragment to show the loans of the user
@@ -38,6 +42,8 @@ public class MyLoansListFragment extends Fragment {
 	private ProgressDialog loadLoansDialog;
 	private ProgressDialog loadReservationsDialog;
 	private Typeface novaLight;
+	private String loansFile = "loans";
+	private String reservationFile = "reservations";
 
 	/**
 	 * says if a title was already selected and loaded in the title details fragment
@@ -55,15 +61,19 @@ public class MyLoansListFragment extends Fragment {
 		list_myLoansAndReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Object itemAtPosition = list_myLoansAndReservations.getItemAtPosition(position);
-				if(itemAtPosition == null) {
-					//do nothing
-				} else if (itemAtPosition instanceof Loan) {
-					listener.onTitleItemSelected(((Loan) itemAtPosition).getLoanable().getTitle().getTitleId());
-				} else if (itemAtPosition instanceof Reservation) {
-					listener.onTitleItemSelected(((Reservation) itemAtPosition).getTitle().getTitleId());
+				if (ConnectionUtils.isConnected(getActivity())) {
+					Object itemAtPosition = list_myLoansAndReservations.getItemAtPosition(position);
+					if(itemAtPosition == null) {
+						//do nothing
+					} else if (itemAtPosition instanceof Loan) {
+						listener.onTitleItemSelected(((Loan) itemAtPosition).getLoanable().getTitle().getTitleId());
+					} else if (itemAtPosition instanceof Reservation) {
+						listener.onTitleItemSelected(((Reservation) itemAtPosition).getTitle().getTitleId());
+					} else {
+						Log.w("MyLoansList", "unknow item type: " + itemAtPosition.getClass());
+					}
 				} else {
-					Log.w("MyLoansList", "unknow item type: " + itemAtPosition.getClass());
+					Toast.makeText(activity, getText(R.string.generic_not_connected_error), Toast.LENGTH_LONG).show();
 				}
 			}
 		});
@@ -101,6 +111,7 @@ public class MyLoansListFragment extends Fragment {
 							}
 						}
 					}
+
 				}
 
 				@Override
@@ -177,12 +188,26 @@ public class MyLoansListFragment extends Fragment {
 		protected LoansAndReservationsListAdapter doInBackground(Void... params) {
 			LoansAndReservationsListAdapter adapter;
 
-			LoanDao loanDao = new LoanDao(CurrentUserUtils.getCredentials(activity));
-			ReservationDao reservationDao = new ReservationDao(CurrentUserUtils.getCredentials(activity));
+			List<Loan> loans = null;
+			List<Reservation> reservations = null;
 
-			adapter = new LoansAndReservationsListAdapter(activity, loanDao.getCurrentUsersLoans(), reservationDao.getCurrentUsersReservations(), checkInCallback);
+			if (ConnectionUtils.isConnected(getActivity().getBaseContext())) {
+				LoanDao loanDao = new LoanDao(CurrentUserUtils.getCredentials(activity));
+				ReservationDao reservationDao = new ReservationDao(CurrentUserUtils.getCredentials(activity));
 
-			return  adapter;
+				loans = loanDao.getCurrentUsersLoans();
+				reservations = reservationDao.getCurrentUsersReservations();
+
+				fileUtils.writeReservationToFile(reservationFile, getActivity().getBaseContext(), reservations);
+				fileUtils.writeLoansToFile(loansFile, getActivity().getBaseContext(), loans);
+			} else {
+				reservations = fileUtils.readReservationFromFile(reservationFile, getActivity().getBaseContext());
+				loans = fileUtils.readLoansFromFile(loansFile, getActivity().getBaseContext());
+			}
+
+			adapter = new LoansAndReservationsListAdapter(activity, loans, reservations, checkInCallback);
+
+			return adapter;
 		}
 
 		@Override

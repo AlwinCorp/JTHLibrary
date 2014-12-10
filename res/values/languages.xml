@@ -4,11 +4,13 @@
         <item>English</item>
         <item>Français</item>
         <item>Deutsch</item>
+        <item>Svenska</item>
     </string-array>
     
     <string-array name="languages_code">
         <item>En</item>
         <item>Fr</item>
         <item>De</item>
+        <item>Sv</item>
     </string-array>
 </resources>

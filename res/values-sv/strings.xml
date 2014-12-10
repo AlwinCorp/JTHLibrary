@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DoeLibS</string>
+
+    <!-- activity names -->
+    <string name="title_activity_my_loans">Mina Lån</string>
+
+    <!-- activity links -->
+    <string name="action_isbn_scanner">ISBN skanner</string>
+
+    <!-- Button values -->
+    <!-- <string name="btn_save_value">save</string> -->
+    <string name="btn_login">Logga in</string>
+    <string name="btn_logout">Logga ut</string>
+    <string name="btn_isbn_scanner_more_scanning">Skanna igen</string>
+    <string name="btn_isbn_scanner_no_more_scanning">Avbryt</string>
+    <string name="btn_check_out">Låna</string>
+    <string name="btn_check_in">Lämna tillbaka</string>
+    <string name="btn_reserve">Reservera</string>
+
+    <!-- dialog messages -->
+    <string name="dialog_no_isbn_on_scanning_found">Det skannade ISBN-numret finns ej i DoeLibS</string>
+    <string name="dialog_really_checkout_loanable">Är du säker på att du vill låna den här kopian?</string>
+    <string name="dialog_really_checkin_loanable">Är du säker på att du vill lämna tillbaka den här kopian?</string>
+    <string name="dialog_really_reserve_title">Är du säker på att du vill reservera den här titeln?</string>
+
+    <string name="dialog_progress_checkin_loanable">Lämna tillbaka kopia&#8230;</string>
+    <string name="dialog_progress_checkout_loanable">Låna kopia&#8230;</string>
+    <string name="dialog_progress_load_titleinformation">Laddar information om titeln&#8230;</string>
+    <string name="dialog_progress_check_reservations">Kontrollerar reservationer&#8230;</string>
+    <string name="dialog_progress_reserve_title">Reserverar titel&#8230;</string>
+    <string name="dialog_progress_load_loans">Laddar lån&#8230;</string>
+    <string name="dialog_progress_load_reservations">Laddar reservationer&#8230;</string>
+    <string name="dialog_progress_add_loanable">Lägger till kopia...</string>
+
+    <!--textviews-->
+    <string name="tv_titledetails_loanables">Kopior</string>
+    <string name="tv_titledetails_categories">Ämnen</string>
+    <string name="tv_titledetails_publisher">Utgivare</string>
+    <string name="tv_titledetails_authors">Författare</string>
+
+
+    <!-- search & search result -->
+    <string name="search_field_required">En titel eller ett ämne krävs för att söka</string>
+    <string name="search_title_hint">Skriv titel...</string>
+    <string name="search_button">Sök</string>
+    <string name="search_topics_hint">Skriv ämnen att söka i...</string>
+    <string name="search_result_none">Inga träffar</string>
+
+    <!-- other descriptions -->
+    <string name="YES">Ja</string>
+    <string name="NO">Nej</string>
+    <string name="CANCEL">Avbryt</string>
+
+    <string name="drawer_open">Öppna menyn</string>
+    <string name="drawer_close">Stäng menyn</string>
+    <string name="title_activity_title_search">Sök</string>
+    <string name="title_activity_title_searchresult">Sökresultat</string>
+    <string name="title_activity_settings">Inställningar</string>
+    <string name="title_activity_isbn_scanner">ISBN skanner</string>
+    <string name="title_activity_login">Logga in</string>
+    <string name="title_activity_title_details">Titel information</string>
+
+    <string name="titledetails_editor_prefix">Redaktör</string>
+
+    <string name="loanable_checkout_error">Kunde inte låna kopian. Försök igen.</string>
+    <string name="loanable_checkout_successfull">Kopian lånades</string>
+    <string name="loanable_checkin_error">Kunde inte lämna tillbaka kopian. Försök igen</string>
+    <string name="loanable_checkin_successfull">Kopian lämnades tillbaka</string>
+    <string name="title_reserve_error">Kunde inte reservera titeln. Försök igen</string>
+    <string name="title_reserve_successfull">Titeln reserverades</string>
+
+    <string name="title_details_no_title_selected">Välj en titel</string>
+
+    <string name="login_password">Lösenord</string>
+    <string name="login_username">Användarnamn (email)</string>
+
+    <string name="login_checking_credentials">Kontrollerar uppgifter&#8230;</string>
+    <string name="login_error_credentials">Kunde ej logga in. Kontrollera dina uppgifter</string>
+    <string name="login_error_internet_connection">Kunde ej logga in. Kontrollera din anslutning</string>
+
+    <string name="loanable_status_available">Tillgänglig</string>
+    <string name="loanable_status_borrowed">Utlånad</string>
+    <string name="loanable_status_reserved">Reserverad</string>
+    <string name="loanable_status_recalled">Återkallad</string>
+    <string name="loanable_status_unavailable">Otillgänglig</string>
+    <string name="loanable_status_deleted">Borttagen</string>
+    <string name="loanable_status_unknown">Okänd</string>
+
+    <string name="prefix_status">Status</string>
+    <string name="no_loanables_available">För tillfället finns inga kopior</string>
+    <string name="settings_language_selection">Välj språk</string>
+    <string name="settings_user_connected">You är inloggad som en </string>
+    <string name="settings_account_section">Mitt konto</string>
+    <string name="settings_notifications_title">Notifieringar</string>
+    <string name="settings_notifications_activation">Ta emot notifieringar</string>
+    
+    
+    <string name="title_activity_splash_screen">DoeLibS</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="loggedin_as">Du är inloggad som %1$s %2$s (%3$s)</string>
+    <string name="logged_out_now">Du är nu utloggad</string>
+    <string name="no_connection">Det gick inte att upprätta en anslutning till DoeLibS server. Se till att enheten är ansluten till Internet</string>
+
+    <string name="my_loans_MyLoans">Mina lån</string>
+    <string name="my_loans_MyReservations">Mina reservationer</string>
+
+    <string name="loans_room">Rum</string>
+    <string name="loans_to_be_returned">Återlämnas</string>
+    <string name="searching">Söker&#8230;</string>
+    <string name="reservation_waiting_for_loanable">Väntar på kopia</string>
+    <string name="add_loanable">Lägg till kopia</string>
+    <string name="add_loanable_doelibs_identifier">DoeLibS-ID</string>
+    <string name="add_loanable_location_category">Platskategori</string>
+    <string name="add_loanable_room">Rum</string>
+    <string name="save">Spara</string>
+    <string name="all_fields_required">Alla fält krävs</string>
+    <string name="add_loanable_successfull">Kopia lades till</string>
+    <string name="add_loanable_no_title">Ingen titel vald - du kan bara lägga till en kopia till vald titel</string>
+    <string name="isbn_scanner_no_scan_data_received">Ingen skan-data mottagen!</string>
+    <string name="isbn_scanner_only_isbn10_and_isbn13_supported">Endast ISBN10 och ISBN13 stöds</string>
+    <string name="dialog_progress_check_if_isbn_exists">Kontroller om titel finns i DoeLibS</string>
+    <string name="add_loanable_doelibsid_already_in_use">Det givna DoeLibS-ID:t används redan</string>
+    <string name="add_loanable_error">Kunde inte lägga till kopia. Försök igen</string>
+
+
+    <string name="search_title">Titel</string>
+    <string name="search_topic">Ämnen</string>
+
+
+</resources>

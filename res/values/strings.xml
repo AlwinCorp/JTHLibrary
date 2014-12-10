@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DoeLibS mobile</string>
+    <string name="app_name">DoeLibS</string>
 
     <!-- activity names -->
     <string name="title_activity_my_loans">My Loans</string>
@@ -119,6 +119,7 @@
     <string name="all_fields_required">All fields are required</string>
     <string name="add_loanable_successfull">Loanable successfully added</string>
     <string name="add_loanable_no_title">No title selected - you can only add a loanable to a given title</string>
+    <string name="generic_not_connected_error">You have to be connected to the internet to use this</string>
     <string name="isbn_scanner_no_scan_data_received">No scan data received!</string>
     <string name="isbn_scanner_only_isbn10_and_isbn13_supported">only ISBN10 and ISBN13 supported</string>
     <string name="dialog_progress_check_if_isbn_exists">checking if title exists in DoeLibS</string>
