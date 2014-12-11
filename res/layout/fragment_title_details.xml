@@ -1,144 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@android:color/white"
-              android:padding="15dp"
-        >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
 
-    <!--this pannel will only be displayed as long no title is selected-->
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/title_details_no_title_selected">
+    <LinearLayout
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@android:color/white"
+                  android:padding="15dp"
+            >
+
+        <!--this pannel will only be displayed as long no title is selected-->
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/title_details_no_title_selected">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/title_details_no_title_selected"
+                    android:id="@+id/textView"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/title_details_no_title_selected"
-                android:id="@+id/textView"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+                style="@style/TextLarge"
+                android:id="@+id/tv_titledetails_titlename"
+                android:layout_marginBottom="10dp"/>
 
+        <!-- table for title details -->
+        <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                >
+            <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/tv_titledetails_edition"
+                        android:layout_marginBottom="7dp"
+                        style="@style/table_entries" />
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_titledetails_categories"
+                        android:id="@+id/tv_titledetails_categories_header"
+                        style="@style/table_entries"
+                        />
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_titledetails_categories"
+                        style="@style/table_entries"
+                        />
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_titledetails_publisher"
+                        android:id="@+id/tv_titledetails_publisher_header"
+                        style="@style/table_entries"
+                        />
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_titledetails_publisher"
+                        style="@style/table_entries"
+                        />
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_titledetails_authors"
+                        android:id="@+id/tv_titledetails_authors_header"
+                        style="@style/table_entries"
+                        />
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_titledetails_authors"
+                        style="@style/table_entries"
+                        />
+            </TableRow>
+        </TableLayout>
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            style="@style/TextLarge"
-            android:id="@+id/tv_titledetails_titlename"
-            android:layout_marginBottom="10dp"/>
-
-    <!-- table for title details -->
-    <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            >
-        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/tv_titledetails_edition"
-                    android:layout_marginBottom="7dp"
-                    style="@style/table_entries" />
-        </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_titledetails_categories"
-                    android:id="@+id/tv_titledetails_categories_header"
-                    style="@style/table_entries"
-                    />
-            <TextView
-                    android:layout_width="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/tv_titledetails_loanables"
+                    android:text="@string/tv_titledetails_loanables"
+                    android:layout_gravity="center"
+                    style="@style/TextMedium"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_titledetails_categories"
-                    style="@style/table_entries"
                     />
-        </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView
+            <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_titledetails_publisher"
-                    android:id="@+id/tv_titledetails_publisher_header"
-                    style="@style/table_entries"
-                    />
-            <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_titledetails_publisher"
-                    style="@style/table_entries"
-                    />
-        </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_titledetails_authors"
-                    android:id="@+id/tv_titledetails_authors_header"
-                    style="@style/table_entries"
-                    />
-            <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_titledetails_authors"
-                    style="@style/table_entries"
-                    />
-        </TableRow>
-    </TableLayout>
+                    style="@style/ButtonStyle.Dark"
+                    android:text="@string/btn_reserve"
+                    android:id="@+id/btn_titledetails_reserve"
+                    android:visibility="invisible"/>
+        </LinearLayout>
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#22b573"
+                android:layout_marginTop="5dp"/>
+
         <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/tv_titledetails_loanables"
-                android:text="@string/tv_titledetails_loanables"
-                android:layout_gravity="center"
-                style="@style/TextMedium"
-                android:layout_weight="1"
-                />
-        <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_no_loanables_available"
+                style="@style/TextSmall"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"/>
+
+        <ListView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ButtonStyle.Dark"
-                android:text="@string/btn_reserve"
-                android:id="@+id/btn_titledetails_reserve"
-                android:visibility="invisible"/>
+                android:id="@+id/lv_titledetails_loanableslist"
+                android:layout_weight="1"/>
+
     </LinearLayout>
-
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#22b573"
-            android:layout_marginTop="5dp"/>
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_no_loanables_available"
-            style="@style/TextSmall"
-            android:layout_marginTop="5dp"
-            android:visibility="gone"/>
-
-    <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_titledetails_loanableslist"
-            android:layout_weight="1"/>
-
-
-
-</LinearLayout>
+</ScrollView>
