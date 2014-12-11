@@ -60,11 +60,11 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 
 	@Override
 	public Object getItem(int position) {
-		if(position == 0 || (loans != null && position == loans.size() + 1)) {
+		if(isPositionAHeader(position)) {
 			//if it is one of the headers
 			return null;
 		} else {
-			if(isPositionInLoanPartOfList(position)){
+			if(isPositionInPartOfLoanList(position)){
 				return loans.get(position - 1); //-1 becuase the header is always there
 			} else {
 				if(loans != null) {
@@ -78,14 +78,13 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 
 	@Override
 	public long getItemId(int position) {
-		if(position == 0 || (loans != null && position == loans.size() + 1)) {
+		if(isPositionAHeader(position)) {
 			//if it is one of the headers
 			return 0;
 		} else {
 			//return the titleId as id
-
-			if(isPositionInLoanPartOfList(position)){
-				return ((Loan)loans.get(position)).getLoanable().getTitle().getTitleId();
+			if(isPositionInPartOfLoanList(position)){
+				return ((Loan)loans.get(position - 1)).getLoanable().getTitle().getTitleId(); //-1 becuase the header is always there
 			} else {
 				if(loans != null) {
 					return ((Reservation)reservations.get(position - loans.size() - 2)).getTitle().getTitleId();
@@ -99,13 +98,13 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//check if it is a header
-		if(position == 0) {
+		if(isPositionLoanHeader(position)) {
 			return getHeader(activity.getText(R.string.my_loans_MyLoans));
-		} else if(loans != null && position == loans.size() + 1) {
+		} else if(isPositionReservationHeader(position)) {
 			return getHeader(activity.getText(R.string.my_loans_MyReservations));
 		} else {
 			//it is a "real" item
-			if(isPositionInLoanPartOfList(position)) {
+			if(isPositionInPartOfLoanList(position)) {
 				return getLoanRow(loans.get(position - 1));
 			} else {
 				if(loans != null) {
@@ -116,6 +115,39 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 			}
 		}
 	}
+
+	/**
+	 * returns if at the given possition a header should be
+	 *
+	 * @param position
+	 * @return
+	 */
+	private boolean isPositionAHeader(int position) {
+		return isPositionLoanHeader(position) || isPositionReservationHeader(position);
+	}
+
+	/**
+	 * returns if the position is the position of the header for the reservation segment
+	 * @param position
+	 * @return
+	 */
+	private boolean isPositionReservationHeader(int position) {
+		if(loans != null) {
+			return (position == loans.size() + 1);
+		} else {
+			return (position == 1);
+		}
+	}
+
+	/**
+	 * returns if the position is the position of the header for the loan segment
+	 * @param position
+	 * @return
+	 */
+	private boolean isPositionLoanHeader(int position) {
+		return position == 0;
+	}
+
 
 	/**
 	 * returns a row for a reservation
@@ -200,7 +232,7 @@ public class LoansAndReservationsListAdapter extends BaseAdapter{
 	 * @param position
 	 * @return
 	 */
-	private boolean isPositionInLoanPartOfList(int position) {
+	private boolean isPositionInPartOfLoanList(int position) {
 		if(loans != null && position <= loans.size()) { //<= because we need one item for the header
 			return true;
 		} else {

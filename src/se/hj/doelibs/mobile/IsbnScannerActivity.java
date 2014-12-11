@@ -26,7 +26,6 @@ public class IsbnScannerActivity extends BaseActivity {
 
 	private SharedPreferences isbnScannerTmpValues;
 	private SharedPreferences.Editor isbnScannerTmpValuesEditor;
-	private ProgressDialog checkIfTitleExistsDialog;
 
 	@Override
 	public void onCreate(Bundle state) {
@@ -100,9 +99,12 @@ public class IsbnScannerActivity extends BaseActivity {
 	 */
 	private void checkIsbn(String isbn, String format) {
 		new CheckIfIsbnExistsTask(isbn, format, new TaskCallback<Title>() {
+			private ProgressDialog checkIfTitleExistsDialog;
+
 			@Override
 			public void onTaskCompleted(Title title) {
 				ProgressDialogUtils.dismissQuitely(checkIfTitleExistsDialog);
+
 				if (title == null) {
 					showDialogNoTitleFound();
 				} else {
