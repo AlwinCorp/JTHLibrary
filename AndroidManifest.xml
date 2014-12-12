@@ -65,6 +65,7 @@
         <activity android:name=".NoConnectionActivity" android:label="Not connected"/>
         <activity android:name=".BrowseActivity" android:label="Search"/>
         <activity android:name=".AddLoanableActivity" android:label="@string/add_loanable"/>
+        <activity android:name=".AddTitleActivity"/>
 
         <service android:exported="false" android:name="se.hj.doelibs.NotificationService" />
 

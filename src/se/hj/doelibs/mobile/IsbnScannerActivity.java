@@ -19,6 +19,7 @@ import se.hj.doelibs.api.TitleDao;
 import se.hj.doelibs.mobile.asynctask.TaskCallback;
 import se.hj.doelibs.mobile.codes.ExtraKeys;
 import se.hj.doelibs.mobile.codes.PreferencesKeys;
+import se.hj.doelibs.mobile.utils.CurrentUserUtils;
 import se.hj.doelibs.mobile.utils.ProgressDialogUtils;
 import se.hj.doelibs.model.Title;
 
@@ -97,7 +98,7 @@ public class IsbnScannerActivity extends BaseActivity {
 	 * @param isbn
 	 * @param format
 	 */
-	private void checkIsbn(String isbn, String format) {
+	private void checkIsbn(final String isbn, final String format) {
 		new CheckIfIsbnExistsTask(isbn, format, new TaskCallback<Title>() {
 			private ProgressDialog checkIfTitleExistsDialog;
 
@@ -106,7 +107,7 @@ public class IsbnScannerActivity extends BaseActivity {
 				ProgressDialogUtils.dismissQuitely(checkIfTitleExistsDialog);
 
 				if (title == null) {
-					showDialogNoTitleFound();
+					showDialogNoTitleFound(isbn, format);
 				} else {
 					//redirect to action...
 					Intent titleDetailsActivity = new Intent(IsbnScannerActivity.this, TitleDetailsActivity.class);
@@ -128,21 +129,37 @@ public class IsbnScannerActivity extends BaseActivity {
 	/**
 	 * opens a dialog that the title is not known to the DoeLibS and asks what the user wants to do
 	 */
-	private void showDialogNoTitleFound() {
+	private void showDialogNoTitleFound(final String isbn, final String format) {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
 		builder.setMessage(R.string.dialog_no_isbn_on_scanning_found)
 				.setPositiveButton(R.string.btn_isbn_scanner_more_scanning, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						openScanner();
 					}
-				})
-				.setNegativeButton(R.string.btn_isbn_scanner_no_more_scanning, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// User cancelled the dialog --> load search page
-						Intent searchActivity = new Intent(IsbnScannerActivity.this, SearchActivity.class);
-						startActivity(searchActivity);
-					}
 				});
+
+		//depending if the user is an admin he will have the option to add the title
+		if(getCredentials() != null && CurrentUserUtils.getCurrentUser(this).isAdmin()) {
+			builder.setNeutralButton(R.string.btn_isbn_scanner_add_title, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent addTitleActivity = new Intent(IsbnScannerActivity.this, AddTitleActivity.class);
+					addTitleActivity.putExtra(ExtraKeys.TITLE_ISBN, isbn);
+					addTitleActivity.putExtra(ExtraKeys.TITLE_ISBN_FORMAT, format);
+					startActivity(addTitleActivity);
+					finish();
+				}
+			});
+		}
+
+		builder.setNegativeButton(R.string.btn_isbn_scanner_no_more_scanning, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog --> load search page
+				Intent searchActivity = new Intent(IsbnScannerActivity.this, SearchActivity.class);
+				startActivity(searchActivity);
+			}
+		});
 
 		builder.create().show();
 	}

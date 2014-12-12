@@ -3,10 +3,14 @@ package se.hj.doelibs.api;
 import android.util.Log;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import se.hj.doelibs.mobile.utils.ListUtils;
 import se.hj.doelibs.model.Author;
 import se.hj.doelibs.model.Loanable;
 import se.hj.doelibs.model.Title;
@@ -118,9 +122,9 @@ public class TitleDao extends BaseDao<Title> {
             //get basic titleinformation
             title = TitleDao.parseFromJson(titleModel);
         } catch (IOException e) {
-            Log.e("AuthorDao", "Exception on GET request", e);
+            Log.e("TitleDao", "Exception on GET request", e);
         } catch (JSONException e) {
-            Log.e("AuthorDao", "could not parse JSON result", e);
+            Log.e("TitleDao", "could not parse JSON result", e);
         }
 
         return title;
@@ -194,6 +198,147 @@ public class TitleDao extends BaseDao<Title> {
         return result;
     }
 
+
+    /**
+     * returns the title for the given ISBN number from the google API
+     * @param isbn
+     * @return
+     */
+    public Title getFromGoogleApi(String isbn) {
+        //https://www.googleapis.com/books/v1/volumes?q=isbn:9789144059679
+        Title result = null;
+
+        try {
+            HttpGet httpGet = new HttpGet("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn);
+            HttpResponse response = httpClient.execute(httpGet);
+
+            //check response
+            checkResponse(response);
+
+            //parse result
+            String responseString = getResponseAsString(response);
+
+            JSONObject root = new JSONObject(responseString);
+            if(root.has("totalItems") && root.getInt("totalItems") >= 1) {
+                JSONArray items = root.getJSONArray("items");
+
+                if(items.length() > 0) {
+                    JSONObject firstItem = items.getJSONObject(0);
+                    JSONObject volumeInfo = firstItem.getJSONObject("volumeInfo");
+                    
+                    result = new Title();
+
+                    //get title
+                    if(volumeInfo.has("title")) {
+                        result.setBookTitle(volumeInfo.getString("title"));
+                    }
+
+                    //get publishYear
+                    if(volumeInfo.has("publishedDate")) {
+                        result.setEditionYear(volumeInfo.getInt("publishedDate"));
+                    }
+
+                    //get ISBNs
+                    if(volumeInfo.has("industryIdentifiers")) {
+                        JSONArray isbns = volumeInfo.getJSONArray("industryIdentifiers");
+
+                        for(int i = 0;i < isbns.length();i++) {
+                            JSONObject entry = isbns.getJSONObject(i);
+
+                            if(entry.has("type")) {
+                                if(entry.get("type").equals("ISBN_10")) {
+                                    result.setIsbn10(entry.getString("identifier"));
+                                } else if(entry.get("type").equals("ISBN_13")) {
+                                    result.setIsbn13(entry.getString("identifier"));
+                                }
+                            }
+                        }
+                    }
+
+                    //get authors
+                    if(volumeInfo.has("authors")) {
+                        JSONArray authors = volumeInfo.getJSONArray("authors");
+                        if(authors.length() > 0) {
+                            ArrayList<Author> authorArrayList = new ArrayList<Author>();
+
+                            for(int i = 0;i< authors.length(); i++) {
+                                Author a = new Author();
+                                a.setName(authors.getString(i));
+                            }
+
+                            result.setAuthors(authorArrayList);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            Log.e("TitleDao", "Exception at reading from GoogleAPI", e);
+        } catch (HttpException e) {
+            Log.e("TitleDao", "HttpException at reading from GoogleAPI", e);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    /**
+     * adds a title to DoeLibS
+     * @param title
+     */
+    public Title add(Title title) throws HttpException {
+        Title result = null;
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("Title", title.getBookTitle()));
+        nameValuePairs.add(new BasicNameValuePair("ISBN10", title.getIsbn10()));
+        nameValuePairs.add(new BasicNameValuePair("ISBN13", title.getIsbn13()));
+        nameValuePairs.add(new BasicNameValuePair("Edition", String.valueOf(title.getEditionNumber())));
+        nameValuePairs.add(new BasicNameValuePair("PublicationYear", String.valueOf(title.getEditionYear())));
+        nameValuePairs.add(new BasicNameValuePair("FirstEditionYear", String.valueOf(title.getFirstEditionYear())));
+        nameValuePairs.add(new BasicNameValuePair("Publisher", title.getPublisher().getName()));
+
+        //create string list with author names so they can be imploded with ListUtils (commaseparated)
+        List<String> authors = new ArrayList<String>();
+        if(title.getAuthors() != null) {
+            for(Author a : title.getAuthors()) {
+                authors.add(a.getName());
+            }
+        }
+
+        //create string list with editor names so they can be imploded with ListUtils (commaseparated)
+        List<String> editors = new ArrayList<String>();
+        if(title.getEditors() != null) {
+            for(Author a : title.getEditors()) {
+                editors.add(a.getName());
+            }
+        }
+
+        //create string list with topic names so they can be imploded with ListUtils (commaseparated)
+        List<String> topics = new ArrayList<String>();
+        if(title.getTopics() != null) {
+            for(Topic t : title.getTopics()) {
+                topics.add(t.getName());
+            }
+        }
+
+        nameValuePairs.add(new BasicNameValuePair("Authors", ListUtils.implode(authors, ", ")));
+        nameValuePairs.add(new BasicNameValuePair("Editors", ListUtils.implode(editors, ", ")));
+        nameValuePairs.add(new BasicNameValuePair("Topics", ListUtils.implode(topics, ", ")));
+
+        try {
+            HttpResponse response = post("/Title/", nameValuePairs);
+            checkResponse(response);
+
+            result = parseFromJson(new JSONObject(getResponseAsString(response)));
+        } catch (IOException e) {
+            Log.d("Add title", "IOException on POST request", e);
+        } catch (JSONException e) {
+            Log.d("Add title", "JSON parse exeption", e);
+        }
+
+        return result;
+    }
 
 
     public static Title parseFromJson(JSONObject jsonObject) throws JSONException {

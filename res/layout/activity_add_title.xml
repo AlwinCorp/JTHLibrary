@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="40dp">
+
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_name"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_name"/>
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_isbn10"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_isbn10"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_isbn13"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_isbn13"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_edition"/>
+
+        <EditText
+                android:inputType="number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_edition"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_year"/>
+
+        <EditText
+                android:inputType="number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_year"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_first_edition_year"/>
+
+        <EditText
+                android:inputType="number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_first_edition_year"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/tv_titledetails_publisher"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_publisher"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/tv_titledetails_authors"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_authors"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_editors"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_editors"/>
+
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/TextMedium"
+                android:text="@string/add_title_topics"/>
+
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextSmall"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/txt_add_title_topics"/>
+
+        <Button
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:id="@+id/btn_add_title"
+                android:onClick="onSave"/>
+
+    </LinearLayout>
+</ScrollView>
