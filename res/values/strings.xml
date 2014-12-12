@@ -129,6 +129,21 @@
 
     <string name="search_title">Title</string>
     <string name="search_topic">Topics</string>
+    <string name="btn_isbn_scanner_add_title">Add this title</string>
+    <string name="add_title_name">Title name</string>
+    <string name="add_title_isbn10">ISBN10</string>
+    <string name="add_title_isbn13">ISBN13</string>
+    <string name="add_title_edition">Edition</string>
+    <string name="add_title_year">Publication year</string>
+    <string name="add_title_first_edition_year">Year of first edition</string>
+    <string name="add_title_editors">Editors</string>
+    <string name="add_title_topics">Topics</string>
+    <string name="add_title_required_fields">The following fields are required: title name, at least one ISBN number,
+        edition, year, first edition year, publisher, authors, topics
+    </string>
+    <string name="invalid_data">The entered data is not valid. Please check your inputs</string>
+    <string name="add_title_error">Error on adding the title. Please try again</string>
+    <string name="dialog_progress_add_title_save">saving title</string>
 
 
 </resources>

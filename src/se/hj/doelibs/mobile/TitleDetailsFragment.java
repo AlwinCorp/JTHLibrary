@@ -188,6 +188,11 @@ public class TitleDetailsFragment extends Fragment {
 		new LoadTitleInformationAsynTaks(getActivity(), this.titleId, new TaskCallback<Title>() {
 			@Override
 			public void onTaskCompleted(Title title) {
+				if(!TitleDetailsFragment.this.isAdded()) {
+					//in case the screen gets rotated during the async load (http://stackoverflow.com/questions/10919240/fragment-myfragment-not-attached-to-activity)
+					return;
+				}
+
 				//setup the views
 				tv_title.setText(title.getBookTitle());
 				tv_edition.setText("Edition " + title.getEditionNumber());

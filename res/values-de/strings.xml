@@ -126,6 +126,21 @@
     <string name="add_loanable_error">Fehler beim Hinzufügen des Exemplars. Bitte versuchen Sie es erneut</string>
 
     <string name="search_title">Titel</string>
-    <string name="search_topic">Themen</string>
+    <string name="search_topic">Kategorien</string>
+    <string name="btn_isbn_scanner_add_title">Dieses Buch hinzufügen</string>
+    <string name="add_title_name">Buch name</string>
+    <string name="add_title_isbn10">ISBN10</string>
+    <string name="add_title_isbn13">ISBN13</string>
+    <string name="add_title_edition">Edition</string>
+    <string name="add_title_year">Veröffentlichungsjahr</string>
+    <string name="add_title_first_edition_year">Jahr der ersten Version</string>
+    <string name="add_title_editors">Bearbeiter</string>
+    <string name="add_title_topics">Kategorien</string>
+    <string name="add_title_required_fields">Die folgenden Felder sind erforderlich: Buchname, mind. eine ISBN Nummer,
+        Edition, Veröffentlichungsjahr, Jahr der ersten Edition, Verleger, Author, Kategorien
+    </string>
+    <string name="invalid_data">The entered data is not valid. Please check your inputs</string>
+    <string name="add_title_error">Error on adding the title. Please try again</string>
+    <string name="dialog_progress_add_title_save">saving title</string>
 
 </resources>
