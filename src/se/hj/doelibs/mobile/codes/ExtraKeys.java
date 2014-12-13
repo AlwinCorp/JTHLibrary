@@ -9,5 +9,5 @@ public final class ExtraKeys {
 	public static final String TITLE_ID = "titleId";
 	public static final String TITLE_SEARCH_RESULTS = "titleSearchResults";
 	public static final String TITLE_ISBN = "titleISBN";
-	public static String TITLE_ISBN_FORMAT = "titleISBNFormat";
+	public static final String TITLE_ISBN_FORMAT = "titleISBNFormat";
 }

@@ -1,17 +1,5 @@
 package se.hj.doelibs.mobile;
 
-import java.util.Arrays;
-
-import org.apache.http.auth.UsernamePasswordCredentials;
-
-import se.hj.doelibs.NotificationService;
-import se.hj.doelibs.mobile.asynctask.LoginAsyncTask;
-import se.hj.doelibs.mobile.asynctask.TaskCallback;
-import se.hj.doelibs.mobile.codes.PreferencesKeys;
-import se.hj.doelibs.mobile.listener.LanguageSettingListener;
-import se.hj.doelibs.mobile.utils.ConnectionUtils;
-import se.hj.doelibs.mobile.utils.CurrentUserUtils;
-import se.hj.doelibs.mobile.utils.ProgressDialogUtils;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,14 +12,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import se.hj.doelibs.mobile.asynctask.LoginAsyncTask;
+import se.hj.doelibs.mobile.asynctask.TaskCallback;
+import se.hj.doelibs.mobile.codes.PreferencesKeys;
+import se.hj.doelibs.mobile.listener.LanguageSettingListener;
+import se.hj.doelibs.mobile.utils.ConnectionUtils;
+import se.hj.doelibs.mobile.utils.CurrentUserUtils;
+import se.hj.doelibs.mobile.utils.ProgressDialogUtils;
+
+import java.util.Arrays;
 
 
 public class SettingsActivity extends BaseActivity {
@@ -117,11 +108,11 @@ public class SettingsActivity extends BaseActivity {
 		spinner.setOnItemSelectedListener(languageListener);
 		
 		// Setting the default value
-		SharedPreferences prefs =  getApplicationContext().getSharedPreferences(PreferencesKeys.NAME_TMP_VALUES, MODE_PRIVATE);
+		SharedPreferences prefs =  getApplicationContext().getSharedPreferences(PreferencesKeys.NAME_MAIN_SETTINGS, MODE_PRIVATE);
 		Resources res = getResources();
 		String[] codes = res.getStringArray(R.array.languages_code);
 		
-		int position = Arrays.asList(codes).indexOf(prefs.getString("application_language", ""));
+		int position = Arrays.asList(codes).indexOf(prefs.getString(PreferencesKeys.KEY_APPLICATION_LANGUAGE, ""));
 		spinner.setSelection(position);
 		
 //		Intent notificationService = new Intent(this, NotificationService.class);

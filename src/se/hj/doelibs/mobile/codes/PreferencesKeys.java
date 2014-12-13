@@ -21,4 +21,5 @@ public final class PreferencesKeys {
     public static final String KEY_ISBN_NUMBER = "isbnNumber";
     public static final String KEY_ISBN_VERSION = "isbnVersion";
 
+    public static final String KEY_APPLICATION_LANGUAGE = "application_language";
 }

@@ -1,14 +1,13 @@
 package se.hj.doelibs;
 
-import java.util.Locale;
-
-import se.hj.doelibs.mobile.codes.PreferencesKeys;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.widget.Toast;
+import se.hj.doelibs.mobile.codes.PreferencesKeys;
+
+import java.util.Locale;
 
 
 public class LanguageManager {
@@ -35,15 +34,15 @@ public class LanguageManager {
 	}
 	
 	public static void setPreferedLanguage(Context context, String code) {
-		SharedPreferences prefs = context.getSharedPreferences(PreferencesKeys.NAME_TMP_VALUES, Activity.MODE_PRIVATE);
+		SharedPreferences prefs = context.getSharedPreferences(PreferencesKeys.NAME_MAIN_SETTINGS, Activity.MODE_PRIVATE);
 		SharedPreferences.Editor prefEditor = prefs.edit();
-		prefEditor.putString("application_language", code);
+		prefEditor.putString(PreferencesKeys.KEY_APPLICATION_LANGUAGE, code);
 		prefEditor.commit();
 	}
 	
 	public static String getPreferedLanguage(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(PreferencesKeys.NAME_TMP_VALUES, Activity.MODE_PRIVATE);
-		return prefs.getString("application_language", "");
+		SharedPreferences prefs = context.getSharedPreferences(PreferencesKeys.NAME_MAIN_SETTINGS, Activity.MODE_PRIVATE);
+		return prefs.getString(PreferencesKeys.KEY_APPLICATION_LANGUAGE, "");
 	}
 		
 }

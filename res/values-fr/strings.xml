@@ -48,6 +48,7 @@
     <string name="invalid_data">The entered data is not valid. Please check your inputs</string>
     <string name="add_title_error">Error on adding the title. Please try again</string>
     <string name="dialog_progress_add_title_save">saving title</string>
+    <string name="add_title_no_title_found">No title with this ISBN was found on the GoogleAPI</string>
 
 
 </resources>

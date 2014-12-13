@@ -60,8 +60,9 @@ public class AddTitleActivity extends BaseActivity {
 
 		//load data
 		String isbn = getIntent().getStringExtra(ExtraKeys.TITLE_ISBN);
-		if(isbn != null && !isbn.equals("")) {
-			loadData(isbn);
+		String format = getIntent().getStringExtra(ExtraKeys.TITLE_ISBN_FORMAT);
+		if(isbn != null && !isbn.equals("") && format != null && !format.equals("")) {
+			loadData(isbn, format);
 		}
 	}
 
@@ -203,8 +204,9 @@ public class AddTitleActivity extends BaseActivity {
 	/**
 	 * loads the data and inserts it into the view
 	 * @param isbn
+	 * @param format
 	 */
-	private void loadData(final String isbn) {
+	private void loadData(final String isbn, final String format) {
 		new AsyncTask<Void, Void, Title>() {
 
 			ProgressDialog dialog;
@@ -220,18 +222,29 @@ public class AddTitleActivity extends BaseActivity {
 			protected void onPostExecute(Title title) {
 				ProgressDialogUtils.dismissQuitely(dialog);
 
-				tv_titleName.setText(title.getBookTitle());
-				tv_year.setText(String.valueOf(title.getEditionYear()));
-				tv_isbn10.setText(title.getIsbn10());
-				tv_isbn13.setText(title.getIsbn13());
+				//check if title was found on google API
+				if(title == null) {
+					Toast.makeText(AddTitleActivity.this, R.string.add_title_no_title_found, Toast.LENGTH_LONG).show();
 
-				if(title.getAuthors() != null && title.getAuthors().size() > 0) {
-					List<String> authors = new ArrayList<String>();
-					for(Author a : title.getAuthors()) {
-						authors.add(a.getName());
+					if(format.equals("EAN_13")) {
+						tv_isbn13.setText(isbn);
+					} else {
+						tv_isbn10.setText(isbn);
 					}
+				} else {
+					tv_titleName.setText(title.getBookTitle());
+					tv_year.setText(String.valueOf(title.getEditionYear()));
+					tv_isbn10.setText(title.getIsbn10());
+					tv_isbn13.setText(title.getIsbn13());
 
-					tv_authors.setText(ListUtils.implode(authors, ", "));
+					if(title.getAuthors() != null && title.getAuthors().size() > 0) {
+						List<String> authors = new ArrayList<String>();
+						for(Author a : title.getAuthors()) {
+							authors.add(a.getName());
+						}
+
+						tv_authors.setText(ListUtils.implode(authors, ", "));
+					}
 				}
 			}
 
