@@ -142,5 +142,6 @@
     <string name="invalid_data">The entered data is not valid. Please check your inputs</string>
     <string name="add_title_error">Error on adding the title. Please try again</string>
     <string name="dialog_progress_add_title_save">saving title</string>
+    <string name="add_title_no_title_found">Zu der gesuchten ISBN Nummer wurde kein Buch bei Google Books gefunden</string>
 
 </resources>
