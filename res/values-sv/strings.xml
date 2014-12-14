@@ -33,6 +33,7 @@
     <string name="dialog_progress_load_loans">Laddar lån&#8230;</string>
     <string name="dialog_progress_load_reservations">Laddar reservationer&#8230;</string>
     <string name="dialog_progress_add_loanable">Lägger till kopia...</string>
+    <string name="dialog_progress_load_reservations_and_data">Hämtar lån och reservationer&#8230;</string>
 
     <!--textviews-->
     <string name="tv_titledetails_loanables">Kopior</string>
@@ -118,31 +119,32 @@
     <string name="all_fields_required">Alla fält krävs</string>
     <string name="add_loanable_successfull">Kopia lades till</string>
     <string name="add_loanable_no_title">Ingen titel vald - du kan bara lägga till en kopia till vald titel</string>
+    <string name="generic_not_connected_error">Du måste vara ansluten till internet för detta</string>
     <string name="isbn_scanner_no_scan_data_received">Ingen skan-data mottagen!</string>
     <string name="isbn_scanner_only_isbn10_and_isbn13_supported">Endast ISBN10 och ISBN13 stöds</string>
     <string name="dialog_progress_check_if_isbn_exists">Kontroller om titel finns i DoeLibS</string>
-    <string name="add_loanable_doelibsid_already_in_use">Det givna DoeLibS-ID:t används redan</string>
+    <string name="add_loanable_doelibsid_already_in_use">Det angivna DoeLibS-ID:t används redan</string>
     <string name="add_loanable_error">Kunde inte lägga till kopia. Försök igen</string>
 
 
     <string name="search_title">Titel</string>
     <string name="search_topic">Ämnen</string>
-    <string name="btn_isbn_scanner_add_title">Add this title</string>
-    <string name="add_title_name">Title name</string>
+    <string name="btn_isbn_scanner_add_title">Lägg till den här titeln</string>
+    <string name="add_title_name">Titel</string>
     <string name="add_title_isbn10">ISBN10</string>
     <string name="add_title_isbn13">ISBN13</string>
-    <string name="add_title_edition">Edition</string>
-    <string name="add_title_year">Year</string>
-    <string name="add_title_first_edition_year">Year of first edition</string>
-    <string name="add_title_editors">Editors</string>
-    <string name="add_title_topics">Topics</string>
-    <string name="add_title_required_fields">The following fields are required: title name, at least one ISBN number,
-        edition, year, first edition year,, publisher, authors, topics
+    <string name="add_title_edition">Utgåva</string>
+    <string name="add_title_year">Utgivningsår</string>
+    <string name="add_title_first_edition_year">Första utgåvans utgivningsår</string>
+    <string name="add_title_editors">Redaktörer</string>
+    <string name="add_title_topics">Ämnen</string>
+    <string name="add_title_required_fields">Följande fält är obligatoriska: titel, åtminstone ett ISBN-nummer,
+        utgåva, utgivningsår, första utgåvans utgivningsår, utgivare, författare, ämnen
     </string>
-    <string name="invalid_data">The entered data is not valid. Please check your inputs</string>
-    <string name="add_title_error">Error on adding the title. Please try again</string>
-    <string name="dialog_progress_add_title_save">saving title</string>
-    <string name="add_title_no_title_found">No title with this ISBN was found on the GoogleAPI</string>
+    <string name="invalid_data">De angivna uppgifterna är ej giltiga. Kontrollera uppgifterna</string>
+    <string name="add_title_error">Kunde inte lägga till titel. Försök igen</string>
+    <string name="dialog_progress_add_title_save">Sparar titel</string>
+    <string name="add_title_no_title_found">Ingen titel med detta ISBN-nummer hittades på GoogleAPI:t</string>
 
 
 </resources>
