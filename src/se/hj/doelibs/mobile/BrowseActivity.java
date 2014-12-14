@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import se.hj.doelibs.mobile.codes.ExtraKeys;
 import se.hj.doelibs.mobile.listadapter.SearchResultListAdapter;
@@ -40,14 +39,6 @@ public class BrowseActivity extends BaseActivity implements OnTitleItemSelectedL
 
 		_list = (ListView)findViewById(R.id.searchResultList);
 		_list.setBackgroundColor(0);
-
-		_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Title clicked = (Title)_list.getItemAtPosition(position);
-				onTitleItemSelected(clicked.getTitleId());
-			}
-		});
 		_list.setAdapter(new SearchResultListAdapter(BrowseActivity.this, android.R.layout.simple_list_item_1, titles));
 
 		//on tablets select first result of list
